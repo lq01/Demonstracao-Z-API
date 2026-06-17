@@ -1,6 +1,9 @@
+import logging
 import requests
 from dotenv import load_dotenv
 from os import getenv
+
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -29,12 +32,12 @@ def enviar_mensagem(telefone: str, mensagem: str) -> bool:
         response.raise_for_status()
         return True
     except requests.exceptions.Timeout:
-        print(f"[ERRO] Timeout ao enviar mensagem para {telefone}")
+        logger.error(f"Timeout ao enviar mensagem para {telefone}")
     except requests.exceptions.ConnectionError:
-        print(f"[ERRO] Falha de conexão ao enviar mensagem para {telefone}")
+        logger.error(f"Falha de conexão ao enviar mensagem para {telefone}")
     except requests.exceptions.HTTPError as e:
-        print(f"[ERRO] HTTP {response.status_code} ao enviar para {telefone}: {e}")
+        logger.error(f"HTTP {response.status_code} ao enviar para {telefone}: {e}")
     except requests.exceptions.RequestException as e:
-        print(f"[ERRO] Erro inesperado ao enviar para {telefone}: {e}")
+        logger.error(f"Erro inesperado ao enviar para {telefone}: {e}")
 
     return False

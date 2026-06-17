@@ -1,6 +1,9 @@
+import logging
 import supabase
 from dotenv import load_dotenv
 from os import getenv
+
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -16,11 +19,11 @@ def listar_contatos() -> list[tuple[str, str]]:
     try:
         response = supabase_client.table("contatos").select("telefone_contato, nome_contato").limit(3).execute()
     except Exception as e:
-        print(f"[ERRO] Falha ao consultar contatos no Supabase: {e}")
+        logger.error(f"Falha ao consultar contatos no Supabase: {e}")
         return []
 
     if not response.data:
-        print("[AVISO] Nenhum contato encontrado na tabela.")
+        logger.warning("Nenhum contato encontrado na tabela.")
         return []
 
     return [(contato['telefone_contato'], contato['nome_contato']) for contato in response.data]
