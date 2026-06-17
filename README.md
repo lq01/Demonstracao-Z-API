@@ -1,5 +1,5 @@
 # Demonstracao-Z-API
-Projeto simples para demonstração de sistema em python usando Z-API para automação no whatsapp
+Projeto de demonstração que integra a API da Z-API com o Supabase para envio automatizado de mensagens via WhatsApp. A aplicação consulta uma tabela de contatos armazenada no Supabase (nome e telefone), e para cada contato retornado, envia uma mensagem personalizada de saudação através da Z-API: `"Olá, <nome_contato> tudo bem com você?"`. O projeto utiliza variáveis de ambiente (.env) para configuração segura das credenciais de ambos os serviços, e conta com um sistema de logging que registra o resultado de cada envio tanto no console quanto em arquivo (app.log), tratando erros de timeout, conexão e HTTP de forma individual.
 
 # Como iniciar
 1. Crie um ambiente virtual:
