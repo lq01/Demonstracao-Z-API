@@ -26,3 +26,5 @@ SUPABASE_KEY=sua-anon-key
 ```bash
 python main.py
 ```
+# Imagem demonstrando funcionamento
+<img width="365" height="652" alt="image" src="https://github.com/user-attachments/assets/359d37b2-c6e9-48ed-952f-c2246899fed0" />
